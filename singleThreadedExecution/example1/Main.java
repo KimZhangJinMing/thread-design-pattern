@@ -1,5 +1,8 @@
 package singleThreadedExecution.example1;
 
+/**
+ * 演示使用同一实例的共享变量出现线程安全的问题
+ */
 public class Main {
     public static void main(String[] args) {
         Gate gate = new Gate();

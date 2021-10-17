@@ -25,8 +25,9 @@ public class Gate {
         }
     }
 
+    // toString会被多个方法调用，应该加synchronized
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return "Gate{" +
                 "count=" + count +
                 ", name='" + name + '\'' +
