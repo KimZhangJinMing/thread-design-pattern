@@ -1,5 +1,7 @@
 package singleThreadedExecution.example1;
 
+import java.util.concurrent.TimeUnit;
+
 public class Gate {
     // 通过门的人数
     private int count = 0;
@@ -16,12 +18,15 @@ public class Gate {
     }
 
     // 如果name和birthPlace的首字母不同,则记录的数据是异常的
-    public void check() {
+    // check方法虽然也使用了name和birthPlace,但是check方法只被pass方法调用,可以保证线程安全
+    // 所以可以不加synchronized提高性能
+    private void check() {
         if(name.charAt(0) != birthPlace.charAt(0)) {
             System.out.println("***Broken***: " + toString());
+        }
+    }
 
-        }    }
-
+    // 由于pass方法不是线程安全的,toString方法输出的数据可能也会错乱
     @Override
     public String toString() {
         return "Gate{" +

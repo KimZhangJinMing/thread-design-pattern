@@ -22,8 +22,8 @@ public class Gate {
     public void check() {
         if(name.charAt(0) != birthPlace.charAt(0)) {
             System.out.println("***Broken***: " + toString());
-
-        }    }
+        }
+    }
 
     @Override
     public String toString() {
