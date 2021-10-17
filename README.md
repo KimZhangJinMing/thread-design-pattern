@@ -4,14 +4,25 @@
 
 
 
-> 1.Single Threaded Execution 
+#### 1.Single Threaded Execution 
 
-​	在同一时刻只允许一个线程执行，Java可以有以下几种实现方式:
+在同一时刻只允许一个线程执行，Java可以有以下几种实现方式:
 
 * 使用synchronized关键字(example2)
 * 使用Semaphore(1)来确保被保护的代码只有一个线程在执行(example3)
 
 
+
+#### 2.Immutable
+
+Imutable是创建不可变的类来确保线程安全。
+
+在Java中用到Imutable模式的常见类有:
+
+* java.lang.String
+* java.math.BigInteger、java.math.BigDecimal
+* java.util.Pattern
+* java.lang.Integer等包装类
 
 
 
