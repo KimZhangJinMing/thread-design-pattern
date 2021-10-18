@@ -1,4 +1,4 @@
-package basic;
+package basic.simpe;
 
 public class SimpleThread extends Thread{
 

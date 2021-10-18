@@ -1,5 +1,7 @@
-package basic;
+package basic.simpe;
 
+
+import basic.simpe.SimpleThread;
 
 public class SleepDemo {
     public static void main(String[] args) {

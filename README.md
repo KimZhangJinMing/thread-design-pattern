@@ -8,8 +8,8 @@
 
 在同一时刻只允许一个线程执行，Java可以有以下几种实现方式:
 
-* 使用synchronized关键字(example2)
-* 使用Semaphore(1)来确保被保护的代码只有一个线程在执行(example3)
+* 使用synchronized关键字(singleThreadedExecution.example2)
+* 使用Semaphore(1)来确保被保护的代码只有一个线程在执行(singleThreadedExecution.example3)
 
 
 
@@ -25,6 +25,11 @@ Imutable是创建不可变的类来确保线程安全。
 * java.lang.Integer等包装类
 
 
+
+以下的情况会破坏Immutable:
+
+* 将字段里保存的实例直接作为getter方法的返回值(immutable.example1)
+* 将构造函数的参数中传入的实例直接赋值给字段(immutable.example2)
 
 
 
@@ -44,7 +49,7 @@ Imutable是创建不可变的类来确保线程安全。
 
 #### 2.Thread.sleep
 
-* Thread.sleep方法是Thread类的静态方法，虽然通过实例调用静态方法的写法在语法上没有错，但是容易让人产生误解。(参考basic/SleepDemo)
+* Thread.sleep方法是Thread类的静态方法，虽然通过实例调用静态方法的写法在语法上没有错，但是容易让人产生误解。(参考basic/simple/SleepDemo)
 * Thread.sleep虽然提供了纳米的控制方法，但这依赖于Java的运行环境。
 
 * Thread.sleep暂停的是当前执行的线程。
@@ -69,7 +74,7 @@ Imutable是创建不可变的类来确保线程安全。
 
 #### 4.wait/notify/notifyAll
 
-wait/notify/notifyAll都需要获取锁后才能调用，否则会抛出illegalMonitorStateException.(WaitDemo)
+wait/notify/notifyAll都需要获取锁后才能调用，否则会抛出illegalMonitorStateException.(basic/simple/WaitDemo)
 
 obj.wait(): obj实例调用wait方法后，线程会释放锁，进入obj实例的一个等待队列，当以下的任意一种情况发生时，线程会退出等待队列。
 
@@ -109,8 +114,8 @@ Wait/notify/notifyAll是Object类的方法，不是Thread类的方法，但是Th
 
 死锁一般是由于交叉获取临界区资源引起的，以下思路可以参考：
 
-* 多个线程按照一定的顺序去获取资源(example5)
-* 将多个临界区的资源封装成一个对象，线程对对象加锁(example6)
+* 多个线程按照一定的顺序去获取资源(singleThreadedExecution.example5)
+* 将多个临界区的资源封装成一个对象，线程对对象加锁(singleThreadedExecution.example6)
 
 
 

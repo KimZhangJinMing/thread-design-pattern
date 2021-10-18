@@ -1,4 +1,6 @@
-package basic;
+package basic.simpe;
+
+import basic.simpe.SimpleThread;
 
 public class WaitDemo {
 
