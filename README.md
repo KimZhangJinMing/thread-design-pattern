@@ -33,6 +33,16 @@ Imutable是创建不可变的类来确保线程安全。
 
 
 
+#### 3.Guarded Suspension
+
+Guarded是‘被保护，被守卫’的意思，Suspension是‘暂停’的意思。
+
+如果执行现在的处理会造成问题，就让执行处理的线程进行等待，直到达到了执行线程的必要条件。通过让线程等待来保证实例的安全性。
+
+一个典型的例子就是线程通信的例子。(GuardedSuspension.example1)
+
+
+
 ### 知识点
 
 #### 1.关于synchronized方法互斥的处理:  
