@@ -41,6 +41,10 @@ Guarded是‘被保护，被守卫’的意思，Suspension是‘暂停’的意
 
 一个典型的例子就是线程通信的例子。(GuardedSuspension.example1)
 
+在Single Threaded Execution模式中，只要有一个线程进入临界区，其他线程就无法进入，只能等待。而在Guarded Suspension模式中，线程是否等待取决于守护条件。**Guarded Suspension模式是在Single Threaded Execution模式的基础上附加了条件而形成的。**
+
+
+
 
 
 ### 知识点
@@ -126,8 +130,12 @@ Wait/notify/notifyAll是Object类的方法，不是Thread类的方法，但是Th
 
 * 多个线程按照一定的顺序去获取资源(singleThreadedExecution.example5)
 * 将多个临界区的资源封装成一个对象，线程对对象加锁(singleThreadedExecution.example6)
+* 外界条件破坏(GuardedSuspension.example3)
 
 
 
+#### 7.线程安全/非安全的Queue
 
+LinkedList实现了Queue接口，Queue接口中定义了offer/peek的方法，但是这两个方法是非线程安全的，在使用的时候需要使用synchronized或其他方法来保证线程安全。
 
+LinkedBlockingQueue继承了Queue接口，并提供了take/put的方法，这两个方法是线程安全的，使用时无需使用synchronized来保证线程安全。

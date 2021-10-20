@@ -1,6 +1,5 @@
 package immutable.example1;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 
 public class UserInfo {
     // info字段本身的值不会改变,但是info字段所指向的实例的状态有可能改变
