@@ -45,6 +45,12 @@ Guarded是‘被保护，被守卫’的意思，Suspension是‘暂停’的意
 
 
 
+#### 4.Balking
+
+如果现在不适合执行这个操作，或者没必要执行这个操作，就停止处理，直接返回。
+
+在Guarded Suspension模式中,guardedMeethod的守护条件成立之前，线程会一直等待。而在Balking模式中，当守护条件不成立时，线程立即返回。
+
 
 
 ### 知识点
