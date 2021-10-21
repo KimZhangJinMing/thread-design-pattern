@@ -8,8 +8,8 @@
 
 在同一时刻只允许一个线程执行，Java可以有以下几种实现方式:
 
-* 使用synchronized关键字(singleThreadedExecution.example2)
-* 使用Semaphore(1)来确保被保护的代码只有一个线程在执行(singleThreadedExecution.example3)
+* 使用synchronized关键字(single_threaded_execution.example2)
+* 使用Semaphore(1)来确保被保护的代码只有一个线程在执行(single_threaded_execution.example3)
 
 
 
@@ -39,7 +39,7 @@ Guarded是‘被保护，被守卫’的意思，Suspension是‘暂停’的意
 
 如果执行现在的处理会造成问题，就让执行处理的线程进行等待，直到达到了执行线程的必要条件。通过让线程等待来保证实例的安全性。
 
-一个典型的例子就是线程通信的例子。(GuardedSuspension.example1)
+一个典型的例子就是线程通信的例子。(guarded_suspension.example1)
 
 在Single Threaded Execution模式中，只要有一个线程进入临界区，其他线程就无法进入，只能等待。而在Guarded Suspension模式中，线程是否等待取决于守护条件。**Guarded Suspension模式是在Single Threaded Execution模式的基础上附加了条件而形成的。**
 
@@ -49,7 +49,13 @@ Guarded是‘被保护，被守卫’的意思，Suspension是‘暂停’的意
 
 如果现在不适合执行这个操作，或者没必要执行这个操作，就停止处理，直接返回。
 
-在Guarded Suspension模式中,guardedMeethod的守护条件成立之前，线程会一直等待。而在Balking模式中，当守护条件不成立时，线程立即返回。
+在Guarded Suspension模式中,guardedMethod的守护条件成立之前，线程会一直等待。而在Balking模式中，当守护条件不成立时，线程立即返回。
+
+
+
+#### 5.Producer-Consumer
+
+
 
 
 
@@ -134,9 +140,10 @@ Wait/notify/notifyAll是Object类的方法，不是Thread类的方法，但是Th
 
 死锁一般是由于交叉获取临界区资源引起的，以下思路可以参考：
 
-* 多个线程按照一定的顺序去获取资源(singleThreadedExecution.example5)
-* 将多个临界区的资源封装成一个对象，线程对对象加锁(singleThreadedExecution.example6)
-* 外界条件破坏(GuardedSuspension.example3)
+* 多个线程按照一定的顺序去获取资源(single_threaded_execution.example5)
+* 将多个临界区的资源封装成一个对象，线程对对象加锁(single_threaded_execution.example6)
+* 外界条件破坏(guarded_suspension.example3)
+* 超时处理(guarded_suspension.example5)
 
 
 
@@ -145,3 +152,24 @@ Wait/notify/notifyAll是Object类的方法，不是Thread类的方法，但是Th
 LinkedList实现了Queue接口，Queue接口中定义了offer/peek的方法，但是这两个方法是非线程安全的，在使用的时候需要使用synchronized或其他方法来保证线程安全。
 
 LinkedBlockingQueue继承了Queue接口，并提供了take/put的方法，这两个方法是线程安全的，使用时无需使用synchronized来保证线程安全。
+
+
+
+#### 8.notify/notifyAll和interrupt的区别
+
+notify/notifyAll 和 interrupt 方法都能唤醒wait方法。区别如下：
+
+| notify/notifyAll                               | interrupt                                     |
+| ---------------------------------------------- | --------------------------------------------- |
+| Object的方法                                   | Thread的方法                                  |
+| 不能指定线程唤醒                               | 可以指定线程唤醒                              |
+| 执行notify/notifyAll时，线程必须要获取实例的锁 | 执行interrupt时，并不需要获取要取消的线程的锁 |
+
+
+
+#### 9.线程中断
+
+如果没有调用wait/join/sleep方法，或者没有编写检查线程的中断状态并抛出Interrupted异常的代码，那么Interrupted异常就不会被抛出。
+
+* interrupt是让线程变成中断状态的方法
+* interrupted是检查并清除中断状态的方法
