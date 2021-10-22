@@ -1,4 +1,4 @@
-package producer_consumer.example1;
+package producer_consumer.example3;
 
 
 import java.util.Arrays;
@@ -54,4 +54,17 @@ public class Table {
         // 桌子上已经放满了蛋糕之后,通知生产者暂停生产
         notifyAll();
     }
+
+    public synchronized void clear() {
+        // 数组的元素全部填充null
+        Arrays.fill(cakes, null);
+        count = 0;
+        head = 0;
+        tail = 0;
+        // 桌子清除后,需要通知put方法可以放蛋糕了
+        // 否则put方法中的wait会一直阻塞下去
+        notifyAll();
+        System.out.println("===CLEAR===");
+    }
+
 }

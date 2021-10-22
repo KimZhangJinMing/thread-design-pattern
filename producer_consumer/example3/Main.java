@@ -1,4 +1,4 @@
-package producer_consumer.example1;
+package producer_consumer.example3;
 
 
 import java.util.Date;
@@ -11,11 +11,13 @@ public class Main {
         // 多个Producer最多也只能生产3个cakes
         MakerThread makerThread1 = new MakerThread("makerThread1", table);
         MakerThread makerThread2 = new MakerThread("makerThread2", table);
+        MakerThread makerThread3 = new MakerThread("makerThread3", table);
         EaterThread eaterThread1 = new EaterThread("eaterThread1", table);
 
         System.out.println("===BEGIN===:" + new Date());
         makerThread1.start();
         makerThread2.start();
+        makerThread3.start();
         eaterThread1.start();
 
         // 运行10s后，终止线程
@@ -24,9 +26,8 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        makerThread1.interrupt();
-        makerThread2.interrupt();
-        eaterThread1.interrupt();
+        // 清除桌子上的蛋糕
+        table.clear();
         System.out.println("===END===:" + new Date());
     }
 }
