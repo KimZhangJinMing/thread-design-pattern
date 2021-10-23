@@ -55,7 +55,33 @@ Guarded是‘被保护，被守卫’的意思，Suspension是‘暂停’的意
 
 #### 5.Producer-Consumer
 
+生产者和消费者之间存在一定的速度差异，可以利用一个中间角色Channel来缓解速度的差异。
 
+
+
+#### 6.Read Write Lock
+
+利用读取操作的线程之间不会冲突的特性来提高程序性能。
+
+* 适合读取操作繁重时(多个线程可以同时读取提高程序性能)
+* 适合读取频率比写入频率高时
+
+synchronized是**物理锁**，每个实例都持有一个锁，但同一个锁不能由两个以上的线程同时获取，Java虚拟机也是这么实现的。
+
+Read Write Lock是**逻辑锁**，是开发人员自己实现的一种结构，逻辑锁也是依赖于物理锁而实现的。
+
+
+
+#### 7.Thread-Per-Message
+
+为每个命令或请求新分配一个线程，由这个线程来执行处理。
+
+消息的‘委托端’线程会告诉‘执行端’线程，“这项工作就交给你了”。
+
+* 适用于handle操作很耗时的操作，可以启动一个新的线程来执行这些耗时的操作，主线程返回。
+* 适用于操作顺序没有要求时
+* 适用于不需要返回值时(当需要获取操作结果时，可以使用Future模式)
+* 服务器接收客户端的请求，将这些请求的实际处理交由其他线程执行，就是采用的这种方式
 
 
 
@@ -173,3 +199,12 @@ notify/notifyAll 和 interrupt 方法都能唤醒wait方法。区别如下：
 
 * interrupt是让线程变成中断状态的方法
 * interrupted是检查并清除中断状态的方法
+
+
+
+#### 10.性能比较
+
+测试了使用ReadWriteLock,synchronized,ConcurrentHashMap时读取的性能比较，通过读取的次数来判读：(read_write_lock.example3~5)
+
+性能从高到低：concurrentHashMap > readWriteLock > synchronized
+
