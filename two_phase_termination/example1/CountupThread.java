@@ -4,6 +4,11 @@ package two_phase_termination.example1;
 public class CountupThread extends Thread{
 
     private int counter;
+    // 为什么需要shutdownRequested标志
+    // 线程的中断要么抛出InterruptedException，要么线程变成中断状态
+    // 只有我们捕获InterruptedException或使用isInterrupted方法判断线程是否中断不就可以可以了嘛？
+    // 确实，但是就怕程序中会有忽略InterruptedException的时候，比如捕获了InterruptedException却什么都不处理
+    // 这样子的话，线程的中断状态也不会改变,isInterrupted检测不到线程中断状态
     private boolean shutdownRequested = false;
 
     // 这里并不需要加锁，因为shutdownRequested这个状态只会由false变成true
