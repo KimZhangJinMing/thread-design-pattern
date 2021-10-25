@@ -99,6 +99,18 @@ Read Write Lock是**逻辑锁**，是开发人员自己实现的一种结构，�
 
 
 
+#### 10.Two-Phase Termination
+
+分两阶段终止。
+
+先从"操作中"状态变为"终止处理中"状态，然后再真正地终止线程。
+
+* 安全地终止线程(安全性):仅在线程运行至不会破坏对象安全性的位置时，程序才会开始终止处理。
+* 必定会进行终止处理(生存性)：线程在收到终止请求后，会中断可以中断的wait，转入终止处理。
+* 发出终止请求后尽快进行终止处理(响应性)：线程在收到终止请求后，会中断可以中断的sleep，尽快进入终止处理。
+
+
+
 ### 知识点
 
 #### 1.关于synchronized方法互斥的处理:  
@@ -214,6 +226,35 @@ notify/notifyAll 和 interrupt 方法都能唤醒wait方法。区别如下：
 * interrupt是让线程变成中断状态的方法
 * interrupted是检查并清除中断状态的方法
 
+当线程被intertupt的时候，会带来以下的结果之一：
+
+* 线程变成"中断状态",但是不会抛出InterruptedException
+* 当线程正在sleep/wait/join时,会抛出InterruptedException,但是线程不会变成'中断状态'
+
+这两种结果是可以进行转换的：
+
+1.中断状态转换成InterruptedException:
+
+如果想在不清除中断状态的前提下检查当前线程的中断状态,可以使用isInterrupted方法。
+
+```java
+if(Thread.interrupted()) {
+    throw new InterruptedException("interrupt");
+}
+```
+
+2.InterruptedException向中断状态的转换
+
+```java
+try {
+    Thread.sleep(100);
+} catch (InterruptedException e) {
+    Thread.currentThread().interrupt();
+}
+```
+
+
+
 
 
 #### 10.性能比较
@@ -221,4 +262,15 @@ notify/notifyAll 和 interrupt 方法都能唤醒wait方法。区别如下：
 测试了使用ReadWriteLock,synchronized,ConcurrentHashMap时读取的性能比较，通过读取的次数来判读：(read_write_lock.example3~5)
 
 性能从高到低：concurrentHashMap > readWriteLock > synchronized
+
+
+
+#### 11.线程的异常处理
+
+如果在线程中没有try..catch捕获异常进行处理，可以使用以下两种方式对线程的异常统一处理：
+
+* 设置未捕获的异常处理器(two_phase_termination/example1)
+* 线程退出钩子，线程退出钩子是指在Java虚拟机退出时启动的线程，使用java.lang.Runtime的addShutdownHock来设置退出钩子(two_phase_termination/example2)
+
+
 
