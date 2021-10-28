@@ -252,7 +252,7 @@ Active-Object有以下特征：
 
 
 
-![summary](main/summary.png)
+![summary](summary.png)
 
 
 
