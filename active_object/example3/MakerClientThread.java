@@ -1,7 +1,7 @@
-package active_object.example1;
+package active_object.example3;
 
-import active_object.example1.active.ActiveObject;
-import active_object.example1.active.Result;
+import active_object.example3.active.ActiveObject;
+import active_object.example3.active.Result;
 
 // 生产字符串的线程
 // Client角色

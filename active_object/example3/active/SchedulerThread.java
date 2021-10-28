@@ -1,4 +1,4 @@
-package active_object.example1.active;
+package active_object.example3.active;
 
 
 // 充当Producer-Customer模式中的Channel
