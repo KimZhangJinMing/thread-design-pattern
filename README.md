@@ -1,10 +1,34 @@
-### thread-design-pattern
+- [线程设计模式](#线程设计模式)
+  - [1.Single Threaded Execution](#1single-threaded-execution)
+  - [2.Immutable](#2immutable)
+  - [3.Guarded Suspension](#3guarded-suspension)
+  - [4.Balking](#4balking)
+  - [5.Producer-Consumer](#5producer-consumer)
+  - [6.Read Write Lock](#6read-write-lock)
+  - [7.Thread-Per-Message](#7thread-per-message)
+  - [8.Worker Thread](#8worker-thread)
+  - [9.Future](#9future)
+  - [10.Two-Phase Termination](#10two-phase-termination)
+  - [11.Thread-Specific-Storage](#11thread-specific-storage)
+  - [12.Active-Object](#12active-object)
+- [知识点](#知识点)
+  - [1.关于synchronized方法互斥的处理:](#1关于synchronized方法互斥的处理)
+  - [2.Thread.sleep](#2threadsleep)
+  - [3. 判断题](#3-判断题)
+  - [4.wait/notify/notifyAll](#4waitnotifynotifyall)
+  - [5.long/double的操作不是原子性的](#5longdouble的操作不是原子性的)
+  - [6.解决死锁的思路](#6解决死锁的思路)
+  - [7.线程安全/非安全的Queue](#7线程安全非安全的queue)
+  - [8.notify/notifyAll和interrupt的区别](#8notifynotifyall和interrupt的区别)
+  - [9.线程中断](#9线程中断)
+  - [10.性能比较](#10性能比较)
+  - [11.线程的异常处理](#11线程的异常处理)
 
 [TOC]
 
 12种常用的多线程设计模式:
 
-
+### 线程设计模式
 
 #### 1.Single Threaded Execution 
 
