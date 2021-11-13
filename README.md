@@ -23,6 +23,23 @@
   - [9.线程中断](#9线程中断)
   - [10.性能比较](#10性能比较)
   - [11.线程的异常处理](#11线程的异常处理)
+  - [12.volatile](#12volatile)
+    - [12.1 volatile底层实现](#121-volatile底层实现)
+    - [12.2 volatile的特性](#122-volatile的特性)
+    - [12.3 volatile内存语义的实现](#123-volatile内存语义的实现)
+    - [12.4 volatile与synchronzied的区别](#124-volatile与synchronzied的区别)
+  - [13.synchronized](#13synchronized)
+  - [14.原子性](#14原子性)
+    - [14.1 处理器保证原子性](#141-处理器保证原子性)
+    - [14.2 Java中保证原子性](#142-java中保证原子性)
+      - [14.2.1 自旋CAS](#1421-自旋cas)
+      - [14.2.2 使用锁](#1422-使用锁)
+  - [15.Java内存模型](#15java内存模型)
+  - [16.重排序](#16重排序)
+    - [16.1 重排序的类型](#161-重排序的类型)
+    - [16.2 JMM与重排序的关系](#162-jmm与重排序的关系)
+    - [16.3 as-if-serial](#163-as-if-serial)
+  - [17.happens-before](#17happens-before)
 
 
 
